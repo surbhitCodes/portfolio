@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="robots" content="noindex, nofollow">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <meta charset="UTF-8">
+        <meta name ="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Surbhit's Co-ordinates</title>
+    </head>
+    <body onload="init()">
+        <div class="sidebar">
+            <a href="myportfolio.html"><i class="fas fa-home"></i>Home</a>
+            <a href="resume.html"><i class="fas fa-info-circle"></i>Resume</a>
+            <a href="contactme.html"><i class="fas fa-envelope"></i>Contact Info</a>
+        </div>
+        <div id="contact-info" class="container">
+            <h2>Contact Information</h2>
+            <p>Please confirm your identity and status by selecting the appropriate option.</p>
+            <form>
+                <label>
+                    <input type="radio" name="identity" id="is_human" onclick="turingTest()">
+                    I am human
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="identity" id="is_machine" onclick="turingTest()">
+                    I am a machine
+                </label>
+                
+            </form>
+
+            <div id="human-test">
+                <br>
+                <label>
+                    <input type="radio" name="recruiter" id="is_recruiter" onclick="turingTest()">
+                    I am a recruiter
+                </label>
+                <br>
+                <label>
+                    <input type="radio" name="recruiter" id="is_not_recruiter" onclick="turingTest()">
+                    I am not a recruiter
+                </label>
+                <div id="recruiter-msg">
+                    <p>Thank you for confirming you are a recruiter</p>
+                </div>
+    
+                <div id="vcard">
+                    <p>Email Id: <a href="mailto:me@surbhitkumar.com">me@surbhitkumar.com</a>, <a href="mailto:surbhit85@gmail.com">surbhit85@gmail.com</a></p>
+                    <p>Voice: 585-290-3239</p>
+                    <p>Note: Please leave a note, and I will get back to you if I am available.</p>
+                </div>
+    
+                <div id="general-human-msg">
+                    <p>Thank you for visiting, Mr. Human</p>
+                </div>
+                <div id="human-vcard">
+                    <p>Contact me at me@surbhitkumar.com</p>
+                    <p>Please do not expect a response by default.</p>
+                </div>
+            </div>
+            
+
+
+        </div>
+
+
+        <script type="text/javascript">
+            function $(id) {
+                return document.getElementById(id);
+            }
+
+            function init() {
+                $('contact-info').style.display='block';
+                $('is_human').checked=false;
+                $('is_machine').checked = true;
+                $('is_recruiter').checked=false;
+                $('is_not_recruiter').checked=false;
+            }
+
+            function displayIf(id, condition){
+                $(id).style.display=condition?'block':'none';
+            }
+
+            function turingTest(){
+                var is_human = $('is_human').checked
+                var is_recruiter = $('is_recruiter').checked
+                var is_not_recruiter = $('is_not_recruiter').checked
+
+                displayIf('human-test', is_human);
+                displayIf('recruiter-msg', is_human && is_recruiter)
+                displayIf('vcard', is_human && is_recruiter)
+                displayIf('general-human-msg', is_human && is_not_recruiter)
+                displayIf('human-vcard', is_human && is_not_recruiter)
+
+                if (!is_human)return;
+                return true;
+                
+            }
+        </script>
+    </body>
+</html>
