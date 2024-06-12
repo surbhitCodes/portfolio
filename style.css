@@ -55,7 +55,7 @@ iframe {
 .sidebar {
     height: 100pc;
     width: 20pc;
-    position: fixed;
+    position:fixed;
     top: 0;
     left: 0;
     background: linear-gradient(-45deg, #ee7752, #e73c7e);
@@ -81,4 +81,49 @@ iframe {
 
 #contact-info, #human-test, #recruiter-msg, #general-human-msg, #human-vcard, #vcard {
     display: none;
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 15pc;
+    }
+    body {
+        margin-left: 13pc;
+        margin-right: 13pc;
+    }
+}
+
+@media (max-width: 992px) {
+    .sidebar {
+        width: 10pc;
+    }
+    body {
+        margin-left: 10pc;
+        margin-right: 10pc;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 8pc;
+    }
+    body {
+        margin-left: 8pc;
+        margin-right: 8pc;
+    }
+}
+
+@media (max-width: 576px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar a {
+        text-align: center;
+        float: none;
+    }
+    body {
+        margin: 0;
+    }
 }
