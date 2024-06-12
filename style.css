@@ -117,7 +117,7 @@ iframe {
 
 @media (max-width: 576px) {
     .sidebar {
-        width: 100%;
+        width:min-content;
         height: auto;
         position: relative;
     }
