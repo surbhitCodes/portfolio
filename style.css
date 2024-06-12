@@ -33,10 +33,11 @@ iframe {
 }
 
 .profile {
+    box-sizing: content-box;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 50%;
 }
 
 .profile-img {
