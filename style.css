@@ -83,6 +83,7 @@ iframe {
     display: none;
 }
 
+/*referenced from internet for native sidebar*/
 @media (max-width: 1200px) {
     .sidebar {
         width: 15pc;
