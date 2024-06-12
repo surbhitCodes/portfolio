@@ -20,12 +20,12 @@
             <p>Please confirm your identity and status by selecting the appropriate option.</p>
             <form>
                 <label>
-                    <input type="radio" id="is_human" onclick="turingTest()">
+                    <input type="radio" name="human" id="is_human" onclick="turingTest()">
                     I am human
                 </label>
                 <br>
                 <label>
-                    <input type="radio" id="is_machine" onclick="turingTest()">
+                    <input type="radio" name="human" id="is_machine" onclick="turingTest()">
                     I am a machine
                 </label>
                 
@@ -34,12 +34,12 @@
             <div id="human-test">
                 <br>
                 <label>
-                    <input type="radio" id="is_recruiter" onclick="turingTest()">
+                    <input type="radio" name="recruiter" id="is_recruiter" onclick="turingTest()">
                     I am a recruiter
                 </label>
                 <br>
                 <label>
-                    <input type="radio" id="is_not_recruiter" onclick="turingTest()">
+                    <input type="radio" name="recruiter" id="is_not_recruiter" onclick="turingTest()">
                     I am not a recruiter
                 </label>
                 <div id="recruiter-msg">
@@ -94,7 +94,17 @@
                 displayIf('general-human-msg', is_human && is_not_recruiter)
                 displayIf('human-vcard', is_human && is_not_recruiter)
 
-                if (!is_human)return;
+                if (!is_human){
+                    $('contact-info').style.display='block';
+                    $('is_human').checked=false;
+                    $('is_machine').checked = true;
+                    $('is_recruiter').checked=false;
+                    $('is_not_recruiter').checked=false;
+                    return;
+                }
+                
+                
+                
                 return true;
                 
             }
