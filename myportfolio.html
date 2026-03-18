@@ -16,6 +16,15 @@
         <meta name ="viewport" content="width=device-width, initial-scale=1.0">
         <title>Surbhit's Portfolio</title>
         <link rel="stylesheet" href="style.css">
+        <script>
+            // set initial theme before paint
+            (function() {
+                const stored = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = stored || (prefersDark ? 'dark' : 'light');
+                if (theme === 'dark') document.documentElement.classList.add('dark');
+            })();
+        </script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <script type="text/javascript">
             document.addEventListener('contextmenu', function(e) {
@@ -29,6 +38,25 @@
 
 <!-- Content-->
     <body>
+    <div class="top-toggle">
+        <label class="switch" aria-label="Toggle theme">
+            <input id="theme-toggle" class="switch__input" type="checkbox" role="switch" aria-label="Toggle theme">
+            <span class="switch__icon">
+                <span class="switch__icon-part switch__icon-part--1"></span>
+                <span class="switch__icon-part switch__icon-part--2"></span>
+                <span class="switch__icon-part switch__icon-part--3"></span>
+                <span class="switch__icon-part switch__icon-part--4"></span>
+                <span class="switch__icon-part switch__icon-part--5"></span>
+                <span class="switch__icon-part switch__icon-part--6"></span>
+                <span class="switch__icon-part switch__icon-part--7"></span>
+                <span class="switch__icon-part switch__icon-part--8"></span>
+                <span class="switch__icon-part switch__icon-part--9"></span>
+                <span class="switch__icon-part switch__icon-part--10"></span>
+                <span class="switch__icon-part switch__icon-part--11"></span>
+            </span>
+            <span class="switch__sr">Dark Mode</span>
+        </label>
+    </div>
     <div class="sidebar">
         <a href="myportfolio.html"><i class="fas fa-home"></i>Home</a>
         <a href="resume.html"><i class="fas fa-info-circle"></i>Resume</a>
@@ -36,29 +64,12 @@
     </div>
     <div class="container">
         <div class="hero-section">
-            <img src="profile1.png" alt="Surbhit Kumar" class="profile-img">
+            <div class="hero-top">
+                <img src="profile1.png" alt="Surbhit Kumar" class="profile-img">
+            </div>
             <h1>Surbhit Kumar</h1>
             <h2><a href="https://www.linkedin.com/in/surbhitkumar/" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a> | <a href="https://www.github.com/surbhitCodes/" target="_blank"><i class="fab fa-github"></i> GitHub</a></h2>
-            <p style="max-width: 800px; margin: 1.5rem auto; line-height: 1.7;"><strong>Software Engineer specializing in Python and TypeScript</strong> with expertise in LLM/agentic systems, RAG, and model optimization. Delivered production-grade AI/ML services using FastAPI, PyTorch, and TensorFlow at Paradigm Study, and built scalable React/Next.js dashboards for real-time interaction.</p>
-        </div>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <span class="stat-number">10%</span>
-                <span class="stat-label">Storage Cost Reduction</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">30%</span>
-                <span class="stat-label">Returns Cost Optimization</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">5x</span>
-                <span class="stat-label">Logistics Capacity Scaled</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-number">18%</span>
-                <span class="stat-label">LLM Perplexity Improvement</span>
-            </div>
+            <p class="hero-summary"><strong>Software engineer specializing in Python</strong> building production LLM/agentic systems—RAG, evals, and model optimization—with FastAPI, PyTorch, and TensorFlow. Ship real-time React/Next.js dashboards and previously led senior program management focused on product and process improvement.</p>
         </div>
 
         <div class="section-card">
@@ -136,7 +147,6 @@
                     <div class="tech-stack">
                         <span class="tech-badge">TensorFlow</span>
                         <span class="tech-badge">LSTM</span>
-                        <span class="tech-badge">VADER</span>
                         <span class="tech-badge">Python</span>
                     </div>
                 </div>
@@ -224,6 +234,28 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // toggle theme handler after DOM is ready
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('theme-toggle');
+            if (!btn) return;
+            const setTheme = (mode) => {
+                document.documentElement.classList.toggle('dark', mode === 'dark');
+                localStorage.setItem('theme', mode);
+                const isDark = mode === 'dark';
+                btn.checked = isDark;
+            };
+            const stored = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const current = stored || (prefersDark ? 'dark' : 'light');
+            setTheme(current);
+            btn.addEventListener('click', () => {
+                const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                setTheme(next);
+            });
+        });
+    </script>
 
     </body>
 </html>

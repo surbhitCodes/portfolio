@@ -10,8 +10,17 @@
 ███████╗███████╗   ██║       ╚██████╔╝███████║    ╚██████╗╚██████╔╝██║ ╚████║██║ ╚████║███████╗╚██████╗   ██║   ██╗
 ╚══════╝╚══════╝   ╚═╝        ╚═════╝ ╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═╝   ╚═╝
                                                                                                                    
--->
+--->
         <meta name="robots" content="noindex, nofollow">
+        <script>
+            // set initial theme before paint
+            (function() {
+                const stored = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const theme = stored || (prefersDark ? 'dark' : 'light');
+                if (theme === 'dark') document.documentElement.classList.add('dark');
+            })();
+        </script>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <meta charset="UTF-8">
@@ -20,6 +29,25 @@
         <title>Surbhit's Co-ordinates</title>
     </head>
     <body onload="init()">
+        <div class="top-toggle">
+            <label class="switch" aria-label="Toggle theme">
+                <input id="theme-toggle" class="switch__input" type="checkbox" role="switch" aria-label="Toggle theme">
+                <span class="switch__icon">
+                    <span class="switch__icon-part switch__icon-part--1"></span>
+                    <span class="switch__icon-part switch__icon-part--2"></span>
+                    <span class="switch__icon-part switch__icon-part--3"></span>
+                    <span class="switch__icon-part switch__icon-part--4"></span>
+                    <span class="switch__icon-part switch__icon-part--5"></span>
+                    <span class="switch__icon-part switch__icon-part--6"></span>
+                    <span class="switch__icon-part switch__icon-part--7"></span>
+                    <span class="switch__icon-part switch__icon-part--8"></span>
+                    <span class="switch__icon-part switch__icon-part--9"></span>
+                    <span class="switch__icon-part switch__icon-part--10"></span>
+                    <span class="switch__icon-part switch__icon-part--11"></span>
+                </span>
+                <span class="switch__sr">Dark Mode</span>
+            </label>
+        </div>
         <div class="sidebar">
             <a href="myportfolio.html"><i class="fas fa-home"></i>Home</a>
             <a href="resume.html"><i class="fas fa-info-circle"></i>Resume</a>
@@ -118,6 +146,26 @@
                 return true;
                 
             }
+            // theme toggle
+            document.addEventListener('DOMContentLoaded', function () {
+                const btn = document.getElementById('theme-toggle');
+                if (!btn) return;
+                const setTheme = (mode) => {
+                    document.documentElement.classList.toggle('dark', mode === 'dark');
+                    localStorage.setItem('theme', mode);
+                    btn.checked = mode === 'dark';
+                };
+                const stored = localStorage.getItem('theme');
+                const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                const current = stored || (prefersDark ? 'dark' : 'light');
+                setTheme(current);
+                btn.addEventListener('click', () => {
+                    const next = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                    setTheme(next);
+                });
+            });
+
         </script>
+
     </body>
 </html>
